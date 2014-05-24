@@ -40,7 +40,11 @@ def command_cb(word, word_eol, userdata):
 		xchat.prnt('You must specify a key to ' + act + ': /a04 ' + act + ' --key <key>')
 		return xchat.EAT_ALL
 
-	output = subprocess.check_output([ runnables + '/' + act + 'r.py', '--msg=' + msg, '--key=' + key, '--hash=' + hashsys ])
+	try:
+		output = subprocess.check_output([ runnables + '/' + act + 'r.py', '--msg=' + msg, '--key=' + key, '--hash=' + hashsys ])
+	except OSError:
+		xchat.prnt('Unable to run the executable. Did you set the runnable path?')
+		return xchat.EAT_ALL
 	output = filter(None, output.split('\n'))
 	xchat.prnt(output[len(output) - 1]);
 
