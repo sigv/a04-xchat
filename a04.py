@@ -25,6 +25,8 @@ def command_cb(word, word_eol, userdata):
 	msg = None
 	key = None
 	hashsys = 'sha1'
+	say = False
+	sayloud = False
 
 	if len(word) < 2:
 		xchat.prnt('You must specify whether you want to encode or decode: /a04 encode|decode')
@@ -42,6 +44,11 @@ def command_cb(word, word_eol, userdata):
 			key = cmd[4:].strip()
 		if cmd.startswith('hash '):
 			hashsys = cmd[5:].strip()
+		if cmd == 'say ':
+			say = True
+		if cmd == 'scream ':
+			say = True
+			sayloud = True
 
 	if msg is None:
 		xchat.prnt('You must specify a message to ' + act + ': /a04 ' + act + ' --msg <msg>')
@@ -51,9 +58,20 @@ def command_cb(word, word_eol, userdata):
 		return xchat.EAT_ALL
 
 	if act == 'encode':
-		xchat.prnt('encoded message: ' + ' '.join(encode(msg, key, hashsys)))
+		out = ' '.join(encode(msg, key, hashsys))
+		if say:
+			if sayloud:
+				xchat.get_context().command('say ' + hashsys + ' | ' + key + ' | ' + out)
+			else:
+				xchat.get_context().command('say ' + out)
+		else:
+			xchat.prnt('encoded message: ' + out)
 	if act == 'decode':
-		xchat.prnt('decoded message: ' + decode(msg, key, hashsys))
+		out = decode(msg, key, hashsys)
+		if say:
+			xchat.get_context().command('say decoded message: ' + out);
+		else:
+			xchat.prnt('decoded message: ' + out)
 
 	return xchat.EAT_ALL
 
