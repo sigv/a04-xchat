@@ -46,8 +46,7 @@ def command_cb(word, word_eol, userdata):
 			hashsys = cmd[5:].strip()
 		if cmd == 'say ':
 			say = True
-		if cmd == 'scream ':
-			say = True
+		if cmd == 'loud ':
 			sayloud = True
 
 	if msg is None:
@@ -76,6 +75,6 @@ def command_cb(word, word_eol, userdata):
 	return xchat.EAT_ALL
 
 if encode is not None and decode is not None:
-	xchat.hook_command('a04', command_cb, help='Usage: a04 encode|decode [--say] [--scream] --msg <msg> --key <key> [--hash <hash>], prints (or says/screams, if instructed) the resulting message')
+	xchat.hook_command('a04', command_cb, help='Usage: a04 encode|decode [--say] [--loud] --msg <msg> --key <key> [--hash <hash>], prints (or, if instructed to, says) the resulting message')
 	print('a04 has been loaded successfully')
 
