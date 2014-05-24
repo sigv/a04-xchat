@@ -57,7 +57,7 @@ def command_cb(word, word_eol, userdata):
 		return xchat.EAT_ALL
 
 	if act == 'encode':
-		out = ' '.join(encode(msg, key, hashsys))
+		out = ' '.join(encode(msg, key, hashsys, False))
 		if say:
 			if sayloud:
 				xchat.get_context().command('say ' + hashsys + ' | ' + key + ' | ' + out)
@@ -66,7 +66,7 @@ def command_cb(word, word_eol, userdata):
 		else:
 			xchat.prnt('encoded message: ' + out)
 	if act == 'decode':
-		out = decode(msg, key, hashsys)
+		out = decode(msg, key, hashsys, False)
 		if say:
 			xchat.get_context().command('say decoded message: ' + out);
 		else:
