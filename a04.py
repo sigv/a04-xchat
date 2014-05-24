@@ -19,7 +19,7 @@ try:
 	from encoder import encode
 	from decoder import decode
 except ImportError:
-	print 'Unable to import the main a04 project. Did you set the path?'
+	print('Unable to import the main a04 project. Did you set the path?')
 
 def command_cb(word, word_eol, userdata):
 	msg = None
@@ -59,5 +59,5 @@ def command_cb(word, word_eol, userdata):
 
 if encode is not None and decode is not None:
 	xchat.hook_command('a04', command_cb, help='Usage: a04 encode|decode --msg <msg> --key <key> [--hash <hash>], prints the resulting message')
-	print 'a04 has been loaded successfully'
+	print('a04 has been loaded successfully')
 
