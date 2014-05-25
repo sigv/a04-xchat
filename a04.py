@@ -44,9 +44,9 @@ def command_cb(word, word_eol, userdata):
 			key = cmd[4:].strip()
 		if cmd.startswith('hash '):
 			hashsys = cmd[5:].strip()
-		if cmd == 'say ':
+		if cmd.strip() == 'say':
 			say = True
-		if cmd == 'loud ':
+		if cmd.strip() == 'loud':
 			sayloud = True
 
 	if msg is None:
