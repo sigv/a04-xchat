@@ -1,8 +1,6 @@
 # a04-xchat #
 
-a04 encryption plugin for XChat
-
-Uses the [Eyesgulis](https://github.com/EyesIsMine/Eyesgulis) project as backend.
+a04 encryption plugin for XChat that uses the [Eyesgulis](https://github.com/EyesIsMine/Eyesgulis) project as backend.
 
 ## Setup ##
 
