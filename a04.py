@@ -1,8 +1,8 @@
 # License: The MIT License
 # Project: https://github.com/sigv/a04-xchat
 
-# Modify the following line to represent the location of the a04 project
-projectpath = '/home/user/a04'
+# Modify the following line to represent the location of the Eyesgulis project
+projectpath = '/home/user/Eyesgulis'
 
 __module_name__ = 'a04'
 __module_version__ = '0.1.0'
@@ -19,7 +19,7 @@ try:
 	from encoder import encode
 	from decoder import decode
 except ImportError:
-	print('Unable to import the main a04 project. Did you set the path?')
+	print('Unable to import the main Eyesgulis project. Did you set the path?')
 
 def command_cb(word, word_eol, userdata):
 	msg = None

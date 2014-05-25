@@ -2,10 +2,12 @@
 
 a04 encryption plugin for XChat
 
+Uses the [Eyesgulis](https://github.com/EyesIsMine/Eyesgulis) project as backend.
+
 ## Setup ##
 
 1. Copy the a04.py file from this project over to your plugins directory (~/.xchat2 for most)
-2. Modify the file so that the project path variable represents the location of your downloaded [a04](https://github.com/EyesIsMine/a04) project
+2. Modify the file so that the project path variable represents the location of your downloaded [Eyesgulis](https://github.com/EyesIsMine/Eyesgulis) project
 3. Run `/py load a04.py` in your XChat to load the plugin (it should automatically load upon startup)
 4. Run `/help a04` in the XChat window to see the usage
 
