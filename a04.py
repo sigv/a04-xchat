@@ -25,6 +25,8 @@ def command_cb(word, word_eol, userdata):
 	msg = None
 	key = None
 	hashsys = 'sha1'
+	mutate = False
+	mutatekey = ''
 	say = False
 	sayloud = False
 
@@ -44,6 +46,10 @@ def command_cb(word, word_eol, userdata):
 			key = cmd[4:].strip()
 		if cmd.startswith('hash '):
 			hashsys = cmd[5:].strip()
+		if cmd.strip() == 'mutate':
+			mutate = True
+		if cmd.startswith('mutatekey '):
+			mutatekey = cmd[10:].strip()
 		if cmd.strip() == 'say':
 			say = True
 		if cmd.strip() == 'loud':
@@ -57,7 +63,12 @@ def command_cb(word, word_eol, userdata):
 		return xchat.EAT_ALL
 
 	if act == 'encode':
-		out = ' '.join(encode(msg, key, hashsys, False))
+		encoded = encode(msg, key, hashsys, False, mutate)
+
+		out = ' '.join(encoded[0])
+		if filter(None, encoded[1]) != []:
+			out += ' (mutation key: ' + ':'.join(encoded[1]) + ')'
+
 		if say:
 			if sayloud:
 				xchat.get_context().command('say ' + hashsys + ' | ' + key + ' | ' + out)
@@ -66,11 +77,14 @@ def command_cb(word, word_eol, userdata):
 		else:
 			xchat.prnt('encoded message: ' + out)
 	if act == 'decode':
-		out = decode(msg, key, hashsys, False)
-		if say:
-			xchat.get_context().command('say decoded message: ' + out);
+		decoded = decode(msg, key, hashsys, False, False, mutate, mutatekey)
+		if decoded == '':
+			xchat.prnt('the decoder couldn\'t decode anything for the given message')
 		else:
-			xchat.prnt('decoded message: ' + out)
+			if say:
+				xchat.get_context().command('say decoded message: ' + decoded);
+			else:
+				xchat.prnt('decoded message: ' + decoded)
 
 	return xchat.EAT_ALL
 
