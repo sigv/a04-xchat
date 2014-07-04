@@ -2,7 +2,7 @@
 # Project: https://github.com/sigv/a04-xchat
 
 # Modify the following line to represent the location of the Eyesgulis project
-projectpath = '/home/user/Eyesgulis'
+projectpath = '/home/user/a04-xchat'
 
 __module_name__ = 'a04'
 __module_version__ = '0.1.0'
@@ -11,7 +11,7 @@ __module_description__ = 'Provides simple a04 decoding and encoding support on t
 import xchat
 
 import os
-os.sys.path.append(projectpath)
+os.sys.path.append(projectpath + '/backend')
 
 encode = None
 decode = None
